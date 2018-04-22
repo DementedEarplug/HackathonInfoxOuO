@@ -16,43 +16,40 @@ images = encoder.encode(reader.getPage(0))
 # for image in images:
 #     print(image)
 #     print()
-
+#
 # print("******NEXT PAGE******")
 
 
 output = PyPDF2.PdfFileWriter()
 
-for index in len(reader.pages):
+# for i in range(0, len(reader.pages)):
+#     page = reader.getPage(i)
+#     page = encoder.merge(page, images)
+#     # output.addPage(page)
+
+for page in reader.pages:
+    images = encoder.encode(reader.getPage(0))
     page = encoder.merge(page, images)
+
+    images = encoder.encode(page)
+
+    print(len(images))
+
+    for image in images:
+        print(image)
+        print()
+
     output.addPage(page)
 
 outputStream = open("optimized.pdf", "wb")
 output.write(outputStream)
 
-# images2 = encoder.encode(page)
-#
-# # print(len(images2))
-# #
-# # for image in images2:
-# #     print(image)
-# #     print()
-# output.addPage(page)
+path = 'optimized.pdf'
 
-# print(len(xos))
+# images = encoder.encode(reader.getPage(0))
 #
-# for xo in xos:
-#     print(xo)
+# print(len(images))
+#
+# for image in images:
+#     print(image)
 #     print()
-
-# for img in images:
-#     img_extractor.extractImages(img)
-
-
-# output = PyPDF2.PdfFileWriter()
-# # output.addPage(reader.getPage(0))
-
-# for page in reader.pages:
-#     encoder.merge(page, images)
-#     output.addPage(page)
-
-
