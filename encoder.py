@@ -29,18 +29,12 @@ def encode(resource):
     return images
 
 
-xos = {}
-
-def getXObjects(resource):
+def merge(resource, imgs):
     if '/XObject' in resource['/Resources']:
         xObject = resource['/Resources']['/XObject'].getObject()
         for xo in xObject:
-            print(xObject[xo])
-            # print()
             if '/Image' in xObject[xo]['/Subtype']:
-                xos[xo] = xObject[xo]
+                xObject[xo] = imgs.pop(0)
             elif '/Form' in xObject[xo]['/Subtype']:
-                encode(xObject[xo])
-    return xos
-
-
+                merge(xObject[xo], imgs)
+    return resource
