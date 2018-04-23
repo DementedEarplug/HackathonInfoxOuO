@@ -1,4 +1,4 @@
-# HackathonInfoxOuO
+# HackathonInfox OuO gruoup
 
 This project's drive is to minimize the size of a PDF file by eliminating image duplicates. 
 The idea is to create a reference of the images and each time a duplicate is presented on the file, substituting 
