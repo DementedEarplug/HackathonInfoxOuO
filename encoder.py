@@ -1,21 +1,12 @@
 import sys
 import PyPDF2
 from PIL import Image
-import img_extractor
 
-# contents = page0.extractText()
-# print(contents.encode('utf-8'))
-# output = PyPDF2.PdfFileWriter()
-# output.addPage(page0)
-# outputStream = open("test.pdf", "wb")
-# output.write(outputStream)
-
-# print(page0['/Resources'])
-
-# path = 'Impositioned.pdf'
-
+#Create an empty image list t store the refences of the images
+#of page 1.
 images = []
 
+#Method to extract the images from page one and save them to images list.
 def encode(resource):
     if '/XObject' in resource['/Resources']:
         xObject = resource['/Resources']['/XObject'].getObject()
@@ -29,6 +20,8 @@ def encode(resource):
     return images
 
 
+#Method to iterate over the pdf's pages and overwrite the original images with the 
+#references stored on the images list
 def merge(resource, imgs):
     if '/XObject' in resource['/Resources']:
         xObject = resource['/Resources']['/XObject'].getObject()
